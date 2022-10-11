@@ -13,10 +13,14 @@ mongoose.connect('mongodb://localhost:27017/films',
         } else (console.log("Connection Successful"));
     });
 
-    
+const moviesChildSchema = new mongoose.Schema({ 
+        review: String, 
+        leadActor: String
+});  
 
 
 const moviesSchema = new mongoose.Schema({
+    children: [moviesChildSchema],
     genre: {
         type: String,
         require: true
@@ -29,10 +33,6 @@ const moviesSchema = new mongoose.Schema({
     }
 });
 
-const childSchema = new mongoose.Schema({/*...*/});
-const parentSchema = new mongoose.Schema({
-    children: [childSchema]
-});
 
 
 const server = app.listen(27017, () => 
